@@ -1,17 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const API_URL = 'https://anapioficeandfire.com/api/';
+const API_URL = `https://anapioficeandfire.com/api/`;
 
 export const charactersAPI = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
     getCharactersData: builder.query({
-      query: (options) =>
-        `characters?page=${options.page}&pageSize=${options.pageSize}`,
-    }),
-    getHouseData: builder.query({
-      query: (id) => `https://anapioficeandfire.com/api/houses/${id}`,
+      //   query: () => `characters?page=1&pageSize=25`,
+      query: () => `characters?page=1&pageSize=25`,
     }),
   }),
 });
