@@ -1,4 +1,12 @@
+import { useState } from 'react';
+
 const FormFilters = () => {
+  const [formValues, setFormValues] = useState({ gender: '', culture: '' });
+
+  const onSelectHandler = (event) => {};
+
+  const onInputHandler = (event) => {};
+  const onSubmitHandler = () => {};
   return (
     <section>
       <form>
