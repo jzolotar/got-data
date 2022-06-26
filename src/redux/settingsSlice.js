@@ -7,11 +7,13 @@ const settingsSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
+      console.log('increment');
       if (state.page === state.lastPage) {
         state.page = 1;
       } else state.page++;
     },
     decrement: (state) => {
+      console.log('increment');
       if (state.page === 1) {
         state.page = state.lastPage;
       } else state.page--;

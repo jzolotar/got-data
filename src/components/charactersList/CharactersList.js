@@ -1,18 +1,41 @@
 import CharactersDetails from '../charactersDetails/CharactersDetails';
 import { useGetCharactersDataQuery } from '../../redux/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../../redux/settingsSlice';
 
 const CharactersList = () => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.settings.page);
+  const lastPage = useSelector((state) => state.settings.lastPage);
+  const pageSize = useSelector((state) => state.settings.pageSize);
+
+  console.log(page, pageSize);
   const { data, isLoading, isSuccess, isFetching, isError, error } =
-    useGetCharactersDataQuery(1, 25);
+    useGetCharactersDataQuery(
+      {
+        page,
+        pageSize,
+      },
+      { refetchOnMountOrArgChange: true }
+    );
 
   isSuccess && data.map((item) => console.log(item));
 
-  const onClickHandler = () => {};
+  const onNextClickHandler = () => {
+    dispatch(increment());
+  };
+  const onPrevClickHandler = () => {
+    dispatch(decrement());
+  };
 
   return (
     <div>
-      <h1>Character List</h1>
+      <h1>
+        Character List
+        <div>
+          {page}/{lastPage}
+        </div>
+      </h1>
       <table>
         <thead>
           <tr>
@@ -24,12 +47,15 @@ const CharactersList = () => {
           </tr>
         </thead>
         <tbody>
-          {isSuccess && data.map((item) => <CharactersDetails item={item} />)}
+          {isSuccess &&
+            !isFetching &&
+            data.map((item) => <CharactersDetails item={item} />)}
+          {isFetching && <p>Loading...</p>}
         </tbody>
       </table>
       <section>
-        <button>next</button>
-        <button>prev</button>
+        <button onClick={onNextClickHandler}>next</button>
+        <button onClick={onPrevClickHandler}>prev</button>
         <select name='gender' id='gender'>
           <option value=''>Select gender...</option>
           <option value='male'>Male</option>

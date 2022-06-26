@@ -8,7 +8,12 @@ export const charactersAPI = createApi({
   endpoints: (builder) => ({
     getCharactersData: builder.query({
       //   query: () => `characters?page=1&pageSize=25`,
-      query: () => `characters?page=1&pageSize=25`,
+      query: ({ page, pageSize }) =>
+        `characters?page=${page}&pageSize=${pageSize}`,
+    }),
+
+    getHouseData: builder.query({
+      query: (id) => `houses/${id}`,
     }),
   }),
 });

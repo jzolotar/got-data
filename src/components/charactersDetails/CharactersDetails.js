@@ -1,11 +1,51 @@
+import { NavLink } from 'react-router-dom';
+
 const CharactersDetails = ({ item }) => {
-  const { name, alive, gender, culture, allegiances } = item;
-  console.log(name);
+  //TODO: concat name + alliases and display it with comas,
+  let table;
+  if (item.name) {
+    table = [item.name, ...item.aliases];
+  } else {
+    table = item.aliases;
+  }
+  const name = table.join(',');
+
+  //TODO: alive field
+  //     Display "Unknown” if both born and died are not provided.
+  // - Display "No” if born is not provided.
+  // - Display "No, died at X years old" when Character has died, where X is his age in years at the time -
+  // of death.
+  // - Display "Yes" when Character has not died.,
+  let alive;
+  if (!item.born && !item.died) {
+    alive = 'unknown';
+  } else if (item.died) {
+    alive = 'no';
+  } else if (item.born) {
+    alive = 'yes';
+  } else {
+    //TODO: add more complex functionality to calculate character's age
+  }
+
+  const culture = item.culture ? item.culture : 'unknown';
+
+  let allegiances = '';
+  let id = '';
+
+  if (item.allegiances.length === 0) {
+    allegiances = 'No allegiances';
+  } else {
+    // id = item.allegiances[0].slice(45);
+
+    let id = item.allegiances[0].slice(41);
+    allegiances = <NavLink to={`/houses/${id}`}>Link</NavLink>;
+  }
+
   return (
     <tr key={Math.random().toString()}>
       <td>{name}</td>
       <td>{alive}</td>
-      <td>{gender}</td>
+      <td>{item.gender}</td>
       <td>{culture}</td>
       <td>{allegiances}</td>
     </tr>
