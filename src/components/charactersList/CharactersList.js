@@ -2,6 +2,7 @@ import CharactersDetails from '../charactersDetails/CharactersDetails';
 import { useGetCharactersDataQuery } from '../../redux/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../../redux/settingsSlice';
+import FormFilters from '../formFilters/FormFilters';
 
 const CharactersList = () => {
   const dispatch = useDispatch();
@@ -56,12 +57,8 @@ const CharactersList = () => {
       <section>
         <button onClick={onNextClickHandler}>next</button>
         <button onClick={onPrevClickHandler}>prev</button>
-        <select name='gender' id='gender'>
-          <option value=''>Select gender...</option>
-          <option value='male'>Male</option>
-          <option value='female'>Female</option>
-        </select>
       </section>
+      <FormFilters />
     </div>
   );
 };

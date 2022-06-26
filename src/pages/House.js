@@ -3,7 +3,7 @@ import {
   useGetHouseDataQuery,
   useGetCharactersDataQuery,
 } from '../redux/apiSlice';
-import HouseDetails from '../components/HouseDetails/HouseDetails';
+import HouseDetails from '../components/houseDetails/HouseDetails';
 
 const House = () => {
   let { id } = useParams();
