@@ -1,8 +1,9 @@
-import React from 'react';
+import { StyledHouseDetails } from './StyledHouseDetails';
 
 const HouseDetails = ({ data }) => {
   return (
-    <section>
+    <StyledHouseDetails>
+      <h1>House Details</h1>
       <p>Name of the house : {data.name}</p>
       <p>Region : {data.region}</p>
       <p>Coat of arms : {data.coatOfArms}</p>
@@ -12,7 +13,7 @@ const HouseDetails = ({ data }) => {
       <p>died out: {data.diedOut ? 'yes' : 'no'}</p>
       <p>overlod: {data.overlord ? 'yes' : 'no'}</p>
       <p>numofCadets: {data.swornMembers.length}</p>
-    </section>
+    </StyledHouseDetails>
   );
 };
 

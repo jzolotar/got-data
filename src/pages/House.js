@@ -1,8 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
-import {
-  useGetHouseDataQuery,
-  useGetCharactersDataQuery,
-} from '../redux/apiSlice';
+import { useGetHouseDataQuery } from '../redux/apiSlice';
 import HouseDetails from '../components/houseDetails/HouseDetails';
 
 const House = () => {
@@ -14,12 +11,11 @@ const House = () => {
   isSuccess && console.log(data);
 
   return (
-    <div>
-      <h1>House Details {id}</h1>
+    <section>
       {isSuccess && !isFetching && <HouseDetails data={data} />}
       {!isSuccess && isFetching && <p>Loading...</p>}
       <NavLink to='/characters'>BACK</NavLink>
-    </div>
+    </section>
   );
 };
 
