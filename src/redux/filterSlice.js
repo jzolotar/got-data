@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { filtersOn: false, gender: '', culture: '' };
+const initialState = { filtersOn: false, gender: 'Any', culture: '' };
 
 const filtersSlice = createSlice({
   name: 'filters',

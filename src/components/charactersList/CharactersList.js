@@ -26,7 +26,7 @@ const CharactersList = () => {
   );
 
   let filteredData;
-  if (isFilterOn) {
+  if (isFilterOn && genderFilter !== 'Any') {
     filteredData = data.filter(
       (item) =>
         (item.gender === genderFilter) & (item.culture === cultureFilter)
