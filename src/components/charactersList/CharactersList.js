@@ -6,21 +6,33 @@ import FormFilters from '../formFilters/FormFilters';
 
 const CharactersList = () => {
   const dispatch = useDispatch();
+  //pagination info
   const page = useSelector((state) => state.settings.page);
   const lastPage = useSelector((state) => state.settings.lastPage);
   const pageSize = useSelector((state) => state.settings.pageSize);
 
-  console.log(page, pageSize);
-  const { data, isLoading, isSuccess, isFetching, isError, error } =
-    useGetCharactersDataQuery(
-      {
-        page,
-        pageSize,
-      },
-      { refetchOnMountOrArgChange: true }
-    );
+  //filtes info
+  const isFilterOn = useSelector((state) => state.filters.filtersOn);
+  const genderFilter = useSelector((state) => state.filters.gender);
+  const cultureFilter = useSelector((state) => state.filters.culture);
 
-  isSuccess && data.map((item) => console.log(item));
+  const { data, isSuccess, isFetching } = useGetCharactersDataQuery(
+    {
+      page,
+      pageSize,
+    },
+    { refetchOnMountOrArgChange: true }
+  );
+
+  let filteredData;
+  if (isFilterOn) {
+    filteredData = data.filter(
+      (item) =>
+        (item.gender === genderFilter) & (item.culture === cultureFilter)
+    );
+  } else {
+    filteredData = data;
+  }
 
   const onNextClickHandler = () => {
     dispatch(increment());
@@ -50,7 +62,7 @@ const CharactersList = () => {
         <tbody>
           {isSuccess &&
             !isFetching &&
-            data.map((item) => <CharactersDetails item={item} />)}
+            filteredData.map((item) => <CharactersDetails item={item} />)}
           {isFetching && <p>Loading...</p>}
         </tbody>
       </table>
