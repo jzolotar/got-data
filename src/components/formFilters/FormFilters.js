@@ -1,6 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  setFiltersOn,
+  setGenderFilter,
+  setCultureFilter,
+} from '../../redux/filterSlice';
 
 const FormFilters = () => {
+  const dispatch = useDispatch();
   const [culture, setCulture] = useState('');
   const [gender, setGender] = useState('');
 
@@ -9,14 +16,15 @@ const FormFilters = () => {
     if (culture.trim() === '' || gender === '') {
       alert('please set filters field');
     } else {
+      //dispatch actions
+      dispatch(setFiltersOn(true));
+      dispatch(setGenderFilter(gender));
+      dispatch(setCultureFilter(culture));
+
+      //reset data holders and form
       setCulture('');
       setGender('');
       event.target.reset();
-      //dispatch action to the store to set filters
-
-      //filtersON
-      //gender
-      //culture
     }
   };
   return (
@@ -45,7 +53,9 @@ const FormFilters = () => {
         </div>
         <button type='submit'>Apply filters</button>
       </form>
-      <button>Remove filters</button>
+      <button onClick={() => dispatch(setFiltersOn(false))}>
+        Remove filters
+      </button>
     </section>
   );
 };
