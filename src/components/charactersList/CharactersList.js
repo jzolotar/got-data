@@ -6,6 +6,7 @@ import {
   decrement,
   goToFirstPage,
   goToLastPage,
+  setPageSize,
 } from '../../redux/settingsSlice';
 import FormFilters from '../formFilters/FormFilters';
 
@@ -67,7 +68,9 @@ const CharactersList = () => {
         <tbody>
           {isSuccess &&
             !isFetching &&
-            filteredData.map((item) => <CharactersDetails item={item} />)}
+            filteredData.map((item, index) => (
+              <CharactersDetails key={index} item={item} />
+            ))}
           {isFetching && <p>Loading...</p>}
         </tbody>
       </table>
@@ -88,6 +91,19 @@ const CharactersList = () => {
         >
           Last Page
         </button>
+        <div>
+          <label>displayed items</label>
+          <select
+            value={pageSize}
+            onChange={(event) =>
+              dispatch(setPageSize(Number(event.target.value)))
+            }
+          >
+            <option value='10'>10</option>
+            <option value='25'>25</option>
+            <option value='50'>50</option>
+          </select>
+        </div>
       </section>
       <FormFilters />
     </div>
