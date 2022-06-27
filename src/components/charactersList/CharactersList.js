@@ -1,7 +1,12 @@
 import CharactersDetails from '../charactersDetails/CharactersDetails';
 import { useGetCharactersDataQuery } from '../../redux/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../../redux/settingsSlice';
+import {
+  increment,
+  decrement,
+  goToFirstPage,
+  goToLastPage,
+} from '../../redux/settingsSlice';
 import FormFilters from '../formFilters/FormFilters';
 
 const CharactersList = () => {
@@ -67,8 +72,22 @@ const CharactersList = () => {
         </tbody>
       </table>
       <section>
+        <button
+          onClick={() => {
+            dispatch(goToFirstPage());
+          }}
+        >
+          First Page
+        </button>
         <button onClick={onNextClickHandler}>next</button>
         <button onClick={onPrevClickHandler}>prev</button>
+        <button
+          onClick={() => {
+            dispatch(goToLastPage());
+          }}
+        >
+          Last Page
+        </button>
       </section>
       <FormFilters />
     </div>
