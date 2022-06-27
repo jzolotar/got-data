@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../../redux/settingsSlice';
 import FormFilters from '../formFilters/FormFilters';
 import Navigation from '../navigation/Navigation';
+import { StyledCharacterList } from './StyledCharacterList';
 
 const CharactersList = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const CharactersList = () => {
   };
 
   return (
-    <div>
+    <StyledCharacterList>
       <h1>
         Character List
         <div>
@@ -75,7 +76,7 @@ const CharactersList = () => {
         pageSize={pageSize}
       />
       <FormFilters genderFilter={genderFilter} />
-    </div>
+    </StyledCharacterList>
   );
 };
 
