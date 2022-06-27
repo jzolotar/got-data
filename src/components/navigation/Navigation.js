@@ -5,10 +5,12 @@ import {
   setPageSize,
 } from '../../redux/settingsSlice';
 
+import { StyledNavigation } from './StyledNavigation';
+
 const Navigation = ({ onNextClickHandler, onPrevClickHandler, pageSize }) => {
   const dispatch = useDispatch();
   return (
-    <section>
+    <StyledNavigation>
       <button
         onClick={() => {
           dispatch(goToFirstPage());
@@ -38,7 +40,7 @@ const Navigation = ({ onNextClickHandler, onPrevClickHandler, pageSize }) => {
           <option value='50'>50</option>
         </select>
       </div>
-    </section>
+    </StyledNavigation>
   );
 };
 

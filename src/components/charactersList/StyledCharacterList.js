@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledCharacterList = styled.section`
+  padding: 2rem;
+
   h1 {
     text-align: center;
     color: #324960;
@@ -8,10 +10,9 @@ export const StyledCharacterList = styled.section`
     font-weight: 700;
   }
   table {
-    border-radius: 5px;
+    border-radius: 1rem;
     font-size: 12px;
     font-weight: normal;
-    border: none;
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
@@ -26,6 +27,7 @@ export const StyledCharacterList = styled.section`
     & td {
       border-right: 1px solid #f8f8f8;
       font-size: 12px;
+      word-wrap: break-word;
     }
 
     & thead th {
