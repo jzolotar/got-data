@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   setFiltersOn,
   setGenderFilter,
@@ -7,7 +7,6 @@ import {
 } from '../../redux/filterSlice';
 
 const FormFilters = () => {
-  const genderValue = useSelector((state) => state.filters.gender);
   const dispatch = useDispatch();
   const [culture, setCulture] = useState('');
   const [gender, setGender] = useState('');
@@ -34,12 +33,14 @@ const FormFilters = () => {
         <div>
           <label>Gender:</label>
           <select
-            value={genderValue}
-            defaultValue={'Any'}
+            defaultValue={'default'}
             onChange={(event) => dispatch(setGenderFilter(event.target.value))}
             name='gender'
             id='gender'
           >
+            <option value='default' disabled>
+              Select gender
+            </option>
             <option value='Any'>Any</option>
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>

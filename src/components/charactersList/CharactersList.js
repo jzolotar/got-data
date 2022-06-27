@@ -74,7 +74,7 @@ const CharactersList = () => {
         onPrevClickHandler={onPrevClickHandler}
         pageSize={pageSize}
       />
-      <FormFilters />
+      <FormFilters genderFilter={genderFilter} />
     </div>
   );
 };
