@@ -5,8 +5,9 @@ import {
   setGenderFilter,
   setCultureFilter,
 } from '../../redux/filterSlice';
+import { StyledFormFilters } from './StyledFormFilters';
 
-const FormFilters = () => {
+const FormFilters = ({ isFilterOn }) => {
   const dispatch = useDispatch();
   const [culture, setCulture] = useState('');
   const [gender, setGender] = useState('');
@@ -28,7 +29,7 @@ const FormFilters = () => {
     }
   };
   return (
-    <section>
+    <StyledFormFilters>
       <form onSubmit={onSubmitHandler}>
         <div>
           <label>Gender:</label>
@@ -55,12 +56,17 @@ const FormFilters = () => {
             value={culture ?? ''}
           />
         </div>
-        <button type='submit'>Apply filters</button>
+        <div>
+          <button type='submit'>Apply filters</button>
+          <button
+            disabled={!isFilterOn}
+            onClick={() => dispatch(setFiltersOn(false))}
+          >
+            Remove filters
+          </button>
+        </div>
       </form>
-      <button onClick={() => dispatch(setFiltersOn(false))}>
-        Remove filters
-      </button>
-    </section>
+    </StyledFormFilters>
   );
 };
 

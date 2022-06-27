@@ -75,7 +75,7 @@ const CharactersList = () => {
         onPrevClickHandler={onPrevClickHandler}
         pageSize={pageSize}
       />
-      <FormFilters genderFilter={genderFilter} />
+      <FormFilters genderFilter={genderFilter} isFilterOn={isFilterOn} />
     </StyledCharacterList>
   );
 };

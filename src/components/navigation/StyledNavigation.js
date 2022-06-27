@@ -17,6 +17,9 @@ export const StyledNavigation = styled.section`
     background-color: #4fc3a1;
     color: #f4f4f4;
     letter-spacing: 1px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   div {
     display: flex;
