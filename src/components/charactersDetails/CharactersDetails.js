@@ -10,33 +10,29 @@ const CharactersDetails = ({ item }) => {
   }
   const name = table.join(',');
 
-  //TODO: alive field
-  //     Display "Unknown” if both born and died are not provided.
-  // - Display "No” if born is not provided.
-  // - Display "No, died at X years old" when Character has died, where X is his age in years at the time -
-  // of death.
-  // - Display "Yes" when Character has not died.,
   let alive;
+  //     Display "Unknown” if both born and died are not provided.
   if (!item.born && !item.died) {
     alive = 'unknown';
+    // - Display "No” if born is not provided.
+    // of death.
   } else if (item.died) {
     alive = 'no';
   } else if (item.born) {
+    // - Display "Yes" when Character has not died.,
     alive = 'yes';
   } else {
     //TODO: add more complex functionality to calculate character's age
+    // - Display "No, died at X years old" when Character has died, where X is his age in years at the time -
   }
 
   const culture = item.culture ? item.culture : 'unknown';
 
   let allegiances = '';
-  let id = '';
 
   if (item.allegiances.length === 0) {
     allegiances = 'No allegiances';
   } else {
-    // id = item.allegiances[0].slice(45);
-
     let id = item.allegiances[0].slice(41);
     allegiances = <NavLink to={`/houses/${id}`}>Link</NavLink>;
   }

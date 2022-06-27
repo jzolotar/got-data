@@ -26,6 +26,9 @@ const settingsSlice = createSlice({
     setPageSize: (state, action) => {
       state.pageSize = action.payload;
       //didnt know how to get link data from headers, therefore my solution is less dynamic
+
+      state.page = 1;
+
       if (action.payload === 10) {
         state.lastPage = 214;
       }

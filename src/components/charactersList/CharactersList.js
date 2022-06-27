@@ -1,14 +1,9 @@
 import CharactersDetails from '../charactersDetails/CharactersDetails';
 import { useGetCharactersDataQuery } from '../../redux/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  increment,
-  decrement,
-  goToFirstPage,
-  goToLastPage,
-  setPageSize,
-} from '../../redux/settingsSlice';
+import { increment, decrement } from '../../redux/settingsSlice';
 import FormFilters from '../formFilters/FormFilters';
+import Navigation from '../navigation/Navigation';
 
 const CharactersList = () => {
   const dispatch = useDispatch();
@@ -74,37 +69,11 @@ const CharactersList = () => {
           {isFetching && <p>Loading...</p>}
         </tbody>
       </table>
-      <section>
-        <button
-          onClick={() => {
-            dispatch(goToFirstPage());
-          }}
-        >
-          First Page
-        </button>
-        <button onClick={onNextClickHandler}>next</button>
-        <button onClick={onPrevClickHandler}>prev</button>
-        <button
-          onClick={() => {
-            dispatch(goToLastPage());
-          }}
-        >
-          Last Page
-        </button>
-        <div>
-          <label>displayed items</label>
-          <select
-            value={pageSize}
-            onChange={(event) =>
-              dispatch(setPageSize(Number(event.target.value)))
-            }
-          >
-            <option value='10'>10</option>
-            <option value='25'>25</option>
-            <option value='50'>50</option>
-          </select>
-        </div>
-      </section>
+      <Navigation
+        onNextClickHandler={onNextClickHandler}
+        onPrevClickHandler={onPrevClickHandler}
+        pageSize={pageSize}
+      />
       <FormFilters />
     </div>
   );
