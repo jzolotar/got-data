@@ -27,11 +27,15 @@ const CharactersList = () => {
   );
 
   let filteredData;
-  if (isFilterOn && genderFilter !== 'Any') {
-    filteredData = data.filter(
-      (item) =>
-        (item.gender === genderFilter) & (item.culture === cultureFilter)
-    );
+  if (isFilterOn) {
+    if (genderFilter !== 'Any') {
+      filteredData = data.filter(
+        (item) =>
+          (item.gender === genderFilter) & (item.culture === cultureFilter)
+      );
+    } else {
+      filteredData = data.filter((item) => item.culture === cultureFilter);
+    }
   } else {
     filteredData = data;
   }

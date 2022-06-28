@@ -10,13 +10,15 @@ import { StyledFormFilters } from './StyledFormFilters';
 const FormFilters = ({ isFilterOn }) => {
   const dispatch = useDispatch();
   const [culture, setCulture] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('Any');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    if (culture.trim() === '' || gender === '') {
+
+    if (culture.trim() === '') {
       alert('please set filters field');
     } else {
+      console.log(gender, culture);
       //dispatch actions
       dispatch(setFiltersOn(true));
       dispatch(setGenderFilter(gender));
@@ -24,7 +26,6 @@ const FormFilters = ({ isFilterOn }) => {
 
       //reset data holders and form
       setCulture('');
-      setGender('');
       event.target.reset();
     }
   };
@@ -34,14 +35,11 @@ const FormFilters = ({ isFilterOn }) => {
         <div>
           <label>Gender:</label>
           <select
-            defaultValue={'default'}
-            onChange={(event) => dispatch(setGenderFilter(event.target.value))}
+            value={gender}
+            onChange={(event) => setGender(event.target.value)}
             name='gender'
             id='gender'
           >
-            <option value='default' disabled>
-              Select gender
-            </option>
             <option value='Any'>Any</option>
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>

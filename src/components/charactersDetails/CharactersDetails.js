@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 const CharactersDetails = ({ item }) => {
-  //TODO: concat name + alliases and display it with comas,
+  //concat name + alliases and display it with comas,
   let table;
   if (item.name) {
     table = [item.name, ...item.aliases];
