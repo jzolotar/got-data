@@ -12,9 +12,10 @@ const House = () => {
 
   return (
     <section>
-      {isSuccess && !isFetching && <HouseDetails data={data} />}
+      <h1>House Details</h1>
+      <NavLink to='/characters'>BACK TO CHAR LIST</NavLink>
+      {isSuccess && !isFetching && <HouseDetails data={data} id={id} />}
       {!isSuccess && isFetching && <p>Loading...</p>}
-      <NavLink to='/characters'>BACK</NavLink>
     </section>
   );
 };

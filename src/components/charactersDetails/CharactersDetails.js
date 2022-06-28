@@ -8,7 +8,7 @@ const CharactersDetails = ({ item }) => {
   } else {
     table = item.aliases;
   }
-  const name = table.join(',');
+  const name = table.join(', ');
 
   let alive;
   //     Display "Unknown” if both born and died are not provided.
